@@ -77,3 +77,8 @@ class BookDetail(APIView):
                 'error': 'Book does not exist!'
             }, status=status.HTTP_404_NOT_FOUND)
 
+    def get(self, request, pk):
+        book = self.get_book_by_pk(pk)
+        serializer = BookSerializer(book)
+        return Response(serializer.data)
+
