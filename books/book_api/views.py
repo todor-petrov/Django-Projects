@@ -68,4 +68,12 @@ class BookCreate(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class BookDetail(APIView):
+    def get_book_by_pk(self, pk):
+        try:
+            return Book.objects.get(pk=pk)
+        except:
+            return Response({
+                'error': 'Book does not exist!'
+            }, status=status.HTTP_404_NOT_FOUND)
 
