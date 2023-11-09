@@ -73,3 +73,8 @@ def add_record(request):
     else:
          messages.success(request, 'You Must Be Logged In...')
          return redirect('home')
+    
+def update_record(request, pk):
+     if request.user.is_authenticated:
+          current_record = Record.objects.get(id=pk)
+          form = AddRecordForm(request.POST or None, isinstance=current_record)
