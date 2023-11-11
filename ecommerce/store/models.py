@@ -9,7 +9,10 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = 'categories'
-    
+
+    def get_absolute_url(self):
+        return reverse('store:category_list', args=[self.slug])
+
     def __str__(self):
         return self.name
 
@@ -27,10 +30,14 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = 'Products'
         ordering = ('-created',)
 
-        def __str__(self):
-            return self.title
+    def get_absolute_url(self):
+        return reverse('store:product_detail', args=[self.slug])
+
+    def __str__(self):
+        return self.title
