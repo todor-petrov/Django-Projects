@@ -11,19 +11,19 @@
 </header>
 <div class="container">
     <div class="row">
-        <center>
-            <div class="col-8">
+        <div class="col-md-6 offset-md-3">
+            <br/><br/>
+            <form method='POST' action="{% url 'register' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
                 <br/><br/>
-                <form method='POST' action="{% url 'login' %}">
-                    {% csrf_token %}
-                    
-                </form>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-            </div>
-        </center>
+                <button type="submit" class="btn btn-secondary">Register</button>
+            </form>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+        </div>
     </div>
 </div>
 
