@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Profile
+from .models import Profile, Meep
 
 
 def home(request):
-    return render(request, 'home.html', {})
+    if request.user.is_authenticated:
+        meeps = Meep.objects.all().order_by('-created_at')
+
+    return render(request, 'home.html', {'meeps': meeps})
 
 def profile_list(request):
     if request.user.is_authenticated:
@@ -17,6 +20,7 @@ def profile_list(request):
 def profile(request, pk):
     if request.user.is_authenticated:
         profile = Profile.objects.get(user_id=pk)
+        meeps = Meep.objects.filter(user_id=pk).order_by('-created_at')
         # Post Form Logic
         if request.method == 'POST':
             # Get current user
@@ -31,7 +35,7 @@ def profile(request, pk):
             # Save the profile
             current_user_profile.save()
 
-        return render(request, 'profile.html', {'profile':profile})
+        return render(request, 'profile.html', {'profile': profile, 'meeps': meeps})
     else:
         messages.success(request, 'You Must Be Logged In To View This Page...')
         return redirect('home')
