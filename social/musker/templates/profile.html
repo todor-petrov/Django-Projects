@@ -12,7 +12,9 @@
                         
                         {% for meep in meeps %}
                             <div class="alert alert-dark" role="alert">
-                            {{ meep }}
+                                {{ meep.body }}
+                                <br/>
+                                <small class="text-muted">Posted By @{{ meep.user.username }}, {{ meep.created_at }}</small>
                             </div><br/>
                         {% endfor %}
 
