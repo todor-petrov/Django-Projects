@@ -3,6 +3,8 @@ from django.contrib import messages
 from .models import Profile, Meep
 from .forms import MeepForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
 
 
 def home(request):
@@ -74,3 +76,7 @@ def logout_user(request):
 	logout(request)
 	messages.success(request, ("You Have Been Logged Out. Sorry to Meep You Go..."))
 	return redirect('home')
+
+def register_user(request):
+     
+     return render(request, 'register.html', {})
