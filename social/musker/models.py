@@ -12,8 +12,6 @@ class Meep(models.Model):
         return f'{self.user} ({self.created_at:%Y-%m-%d %H:%M}): {self.body}'
     
 
-
-# Create A User Profile Model
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False, blank=True)
