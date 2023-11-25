@@ -22,10 +22,13 @@
                 </div>
                 <div class="col-4">
                     <br/><br/><br/>
+                    
+                    {% if profile.profile_image %}
+                        <img src="{{ profile.profile_image.url }}">
+                    {% endif %}
+                        
                     <div class="card">
-                        <div class="card-header">
-                          Follows
-                        </div>
+                        <div class="card-header">Follows</div>
                         <div class="card-body">
                           <p class="card-text">
                             {% for following in profile.follows.all %}
