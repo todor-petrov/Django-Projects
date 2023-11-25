@@ -8,7 +8,7 @@ class ProfilePicForm(forms.ModelForm):
     profile_image = forms.ImageField(label='Profile Picture')
     class Meta:
         model = Profile
-        fields = ('profile_image', )
+        fields = ('profile_image',)
 
 
 class MeepForm(forms.ModelForm):
