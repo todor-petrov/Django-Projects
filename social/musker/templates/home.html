@@ -23,7 +23,7 @@
                     <div class="col-11">
                         {{ meep.body }}
                         <br/>
-                        <small class="text-muted">Posted By @{{ meep.user.username }}, {{ meep.created_at }}
+                        <small class="text-muted">{{ meep.created_at }} By @{{ meep.user.username }}
                             - {{ meep.number_of_likes }} Likes - 
                             
                             {% if user in meep.likes.all %}
