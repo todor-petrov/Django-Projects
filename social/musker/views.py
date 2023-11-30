@@ -30,9 +30,21 @@ def profile_list(request):
 		profiles = Profile.objects.exclude(user=request.user)
 		return render(request, 'profile_list.html', {'profiles':profiles})
 	else:
-		messages.success(request, ('You Must Be Logged In To View This Page'))
+		messages.success(request, ('You Must Be Logged In To View This Page...'))
 		return redirect('home')
 
+def unfollow(request, pk):
+	if request.user.is_authenticated:
+		profile = Profile.objects.get(user_id=pk)
+		request.user.profile.follows.remove(profile)
+		request.user.profile.save()
+		messages.success(request, (f'You Have Successfully Unfollowed {profile.user.username}'))
+		return redirect(request.META.get('HTTP_REFERER'))
+
+	else:
+		messages.success(request, ('You Must Be Logged In To View This Page...'))
+		return redirect('home')
+	
 def profile(request, pk):
 	if request.user.is_authenticated:
 		profile = Profile.objects.get(user_id=pk)
