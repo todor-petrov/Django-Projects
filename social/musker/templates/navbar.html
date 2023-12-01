@@ -30,6 +30,10 @@
             </li>
 
           {% endif %}
+          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'search' %}">Search</a>
+            </li>
         </ul>
         {% if user.is_authenticated %}
           <ul class="navbar-nav ml-auto">
