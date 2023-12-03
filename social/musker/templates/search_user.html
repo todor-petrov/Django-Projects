@@ -47,8 +47,12 @@
         <br/><br/>
 
     {% endfor %}
-{% comment %} {% else %}
-    Sorry, No Usernames Containing That Exist, Please Try Again... {% endcomment %}
+{% else %}
+    
+    {% if searched != None %}
+        That User does not exist, please try again...
+    {% endif %}
+        
 {% endif %}
 
 <br/><br/>
